@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ BSD 3-Clause License
   ~
   ~ Copyright 2018  Sage Bionetworks. All rights reserved.
@@ -31,5 +31,7 @@
   -->
 
 <resources>
-    <string name="app_name">Motor Control Module</string>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>
