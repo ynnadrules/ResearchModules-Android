@@ -1,0 +1,7 @@
+include ':app', ':motor-control-module'
+
+include ':domain', ':data', ':mobile-ui', ':presentation'
+project(':domain').projectDir = new File('SageResearch-Android/domain')
+project(':data').projectDir = new File('SageResearch-Android/data')
+project(':mobile-ui').projectDir = new File('SageResearch-Android/mobile-ui')
+project(':presentation').projectDir = new File('SageResearch-Android/presentation')
