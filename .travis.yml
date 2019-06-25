@@ -1,0 +1,92 @@
+language: android
+jdk: oraclejdk8
+dist: trusty
+sudo: true
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-28.0.3
+    - build-tools-28.0.2
+    - android-28
+
+before_install:
+  - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "tcisagebio@sagebase.org"
+
+install:
+  # upgrade to dpkg >= 1.17.5ubuntu5.8, which fixes https://bugs.launchpad.net/ubuntu/+source/dpkg/+bug/1730627
+  - sudo apt-get install -y dpkg
+  - gem install bundler
+  - bundle install
+  - ./setup_git_crypt.sh || travis_terminate 1
+  - ./install-gcloud.sh || travis_terminate 1
+
+# Path is used for zipalign
+before_script:
+  - export PATH=$PATH:$ANDROID_HOME/build-tools/27.0.3
+
+stages:
+  - name: test
+    if: branch !~ /^stable-.*$/
+  - name: Firebase-test
+    if: env(encrypted_cafca427fc2f_iv) IS present
+  - name: deploy
+    if: branch =~ /^stable-.*$/
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - bundle exec fastlane test && bundle exec fastlane assemble
+    #    - stage: Firebase-test
+    #      name: "Large androidTests"
+    #      if: branch =~ /^stable-.*$/
+    #      script:
+    #        - ./git_crypt_unlock.sh || travis_terminate 1
+    #        - ./firebase-test-setup.sh || travis_terminate 1
+    #        - ./gradlew :app:assembleInternalDebugAndroidTest :app:assembleInternalDebug
+    #        - |
+    #          echo "y" | gcloud firebase test android run \
+    #          --app ./app/build/outputs/apk/internal/debug/app-internal-debug.apk \
+    #          --test ./app/build/outputs/apk/androidTest/internal/debug/app-internal-debug-androidTest.apk \
+    #          --test-targets "size large" \
+    #          --device model=NexusLowRes
+    - stage: Firebase-test
+      if: type != pull_request
+      name: "Small and Medium androidTests"
+      script:
+        - ./git_crypt_unlock.sh || travis_terminate 1
+        - ./firebase-test-setup.sh || travis_terminate 1
+        - ./gradlew :app:assembleInternalDebugAndroidTest :app:assembleInternalDebug
+        #        - bundle exec fastlane assemble
+        - |
+          echo "y" | gcloud firebase test android run \
+          --app ./app/build/outputs/apk/internal/debug/app-internal-debug.apk \
+          --test ./app/build/outputs/apk/androidTest/internal/debug/app-internal-debug-androidTest.apk \
+          --test-targets "size small","size medium" \
+          --device model=NexusLowRes
+    - stage: deploy
+      script:
+        - ./git_crypt_unlock.sh || travis_terminate 1
+        - |
+          bundle exec fastlane \
+          deploy_bundle track:internal \
+          alias:$KEY_ALIAS storepass:$KEYSTORE_PASSWORD keypass:$KEY_PASSWORD \
+          storefile:$TRAVIS_BUILD_DIR/../android-certificates/SageBionetworks.keystore
+
+notifications:gra
+  slack:
+    secure: RbaFEfm9sdMnGUa5p+yLJo8m6oMO6h22BxGP/FA+wabZweixYvuZPOYCffLBpECjVTFA+Mh5/EMIaRgrEnIarlv1v3GnIaI3IRrxEisYrpgEDlLJo7n9llXOyD2a0YGGEtwdhJBqRGtRwTjXDS0jOh/l8YPACSedSiOl2f5z3nkKfkoMlKS4JwsLWLT2vE8v0pOxgo4xPX/u2Qb5r1sl5Hw/X5Vx3bkhXdzq9KMWYR1mGvByDpJrF9nycLpxsOnIhMfWfVmRZS8qa61QwGYOU5lWwW8B5y8NQ4gGgOWUAtTVz+q8izEi7gzqFNT/33tSVJ8kL9hDbfFLtY4s1kHFarm9aJkQIkfjuVho0odeLgLsAUmre1cAL6YZZMlSy3GacRv35e3tphPX3oNbUXaRe+tCgOv1yXfRqj/T9g/mXzadpMxLW2qLYp7dBOJp6Xg9iz/QjHLBkRPSnOneVIisLvCTpyieIpu0tUbWeC4/UvkeTrodmGaKHDhxdtWLpQ+brWmZTKaxHRYOrzHoCIVh30ZPyP5BS/w5tFkaSkLvcVXdGK9NvlcZYbmXoZ1spufd6mN5q2+HQRHljMQ6Aufwbc3y1LjYbfum/1kaCF0JfO6dVb1BVn7tvwF/Kw0/nieJD5p/BTMbQSjB5keghMWvahujsygW7XryoDAuhkjVtBk=
+    on_success: change # default: always
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  bundler: true
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache

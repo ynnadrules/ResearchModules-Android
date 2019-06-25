@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -41,10 +41,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':motor-control-module')
-    implementation project(':domain')
-    implementation project(':presentation')
-    implementation project(':mobile-ui')
-    implementation project(':data')
+    implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
+    implementation "org.sagebionetworks.research:domain:$sage_research_version"
+    implementation "org.sagebionetworks.research:presentation:$sage_research_version"
+    implementation "org.sagebionetworks.research:data:$sage_research_version"
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
