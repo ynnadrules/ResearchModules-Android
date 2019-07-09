@@ -1,3 +1,3 @@
-include ':motor-control-test-app', ':motor-control-module'
+include ':motor-control-test-app', ':motor-control-module', ':psorcast-module', ':psorcast_module_test_app'
 
 //includeBuild ('../SageResearch-Android')

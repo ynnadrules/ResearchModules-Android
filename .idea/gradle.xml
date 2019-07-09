@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/motor-control-module" />
             <option value="$PROJECT_DIR$/motor-control-test-app" />
+            <option value="$PROJECT_DIR$/psorcast-module" />
+            <option value="$PROJECT_DIR$/psorcast_module_test_app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
