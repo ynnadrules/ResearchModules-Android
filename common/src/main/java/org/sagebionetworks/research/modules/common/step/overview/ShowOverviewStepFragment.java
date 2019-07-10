@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.show_step_fragment;
+package org.sagebionetworks.research.modules.common.step.overview;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -46,11 +46,9 @@ import android.widget.TextView;
 import org.sagebionetworks.research.domain.result.implementations.ResultBase;
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragmentBase;
 import org.sagebionetworks.research.mobile_ui.widget.ActionButton;
-import org.sagebionetworks.research.modules.motor_control.R;
-import org.sagebionetworks.research.modules.motor_control.step_binding.OverviewStepViewBinding;
-import org.sagebionetworks.research.modules.motor_control.step_view.IconView;
-import org.sagebionetworks.research.modules.motor_control.step_view.OverviewStepView;
-import org.sagebionetworks.research.modules.motor_control.widget.DisablableScrollView;
+import org.sagebionetworks.research.modules.common.R;
+import org.sagebionetworks.research.modules.common.util.FirstRunHelper;
+import org.sagebionetworks.research.modules.common.widget.DisableableScrollView;
 import org.sagebionetworks.research.presentation.DisplayDrawable;
 import org.sagebionetworks.research.presentation.DisplayString;
 import org.sagebionetworks.research.presentation.model.action.ActionType;
@@ -86,7 +84,7 @@ public class ShowOverviewStepFragment extends
 
     @Override
     public int getLayoutId() {
-        return R.layout.mpower2_overview_step;
+        return R.layout.srmc_overview_step;
     }
 
     @Override
@@ -110,7 +108,7 @@ public class ShowOverviewStepFragment extends
     @Override
     public void onStart() {
         super.onStart();
-        DisablableScrollView scrollView = this.stepViewBinding.getScrollView();
+        DisableableScrollView scrollView = this.stepViewBinding.getScrollView();
         if (this.isFirstRun) {
             scrollView.post(() -> scrollView.fullScroll(ScrollView.FOCUS_DOWN));
             this.stepViewBinding.getInfoButton().setVisibility(View.GONE);
@@ -135,9 +133,9 @@ public class ShowOverviewStepFragment extends
         List<ImageView> iconImageViews = this.stepViewBinding.getIconImageViews();
         List<TextView> iconLabels = this.stepViewBinding.getIconLabels();
 
-        List<IconView> iconViews = stepView.getIconViews();
+        List<OverviewStepView.IconView> iconViews = stepView.getIconViews();
         for (int i = 0; i < iconImageViews.size(); i++) {
-            IconView iconView = null;
+            OverviewStepView.IconView iconView = null;
             if (i < iconViews.size()) {
                 iconView = iconViews.get(i);
             }

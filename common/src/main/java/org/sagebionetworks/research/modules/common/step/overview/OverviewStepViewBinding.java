@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.step_binding;
+package org.sagebionetworks.research.modules.common.step.overview;
 
 import android.graphics.Paint;
 import android.view.Gravity;
@@ -42,8 +42,7 @@ import org.sagebionetworks.research.mobile_ui.R2;
 import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.UIStepViewBinding;
 import org.sagebionetworks.research.mobile_ui.widget.ActionButton;
 import org.sagebionetworks.research.mobile_ui.widget.NavigationActionBar.ActionButtonClickListener;
-import org.sagebionetworks.research.modules.motor_control.step_view.OverviewStepView;
-import org.sagebionetworks.research.modules.motor_control.widget.DisablableScrollView;
+import org.sagebionetworks.research.modules.common.widget.DisableableScrollView;
 
 import java.util.List;
 
@@ -73,7 +72,7 @@ public class OverviewStepViewBinding<S extends OverviewStepView> extends UIStepV
         public TextView overallIconDescriptionLabel;
 
         @BindView(R2.id.scrollView)
-        public DisablableScrollView scrollView;
+        public DisableableScrollView scrollView;
     }
 
     private final OverviewStepViewHolder overviewStepViewHolder;
@@ -98,7 +97,7 @@ public class OverviewStepViewBinding<S extends OverviewStepView> extends UIStepV
         return this.overviewStepViewHolder.overallIconDescriptionLabel;
     }
 
-    public DisablableScrollView getScrollView() {
+    public DisableableScrollView getScrollView() {
         return this.overviewStepViewHolder.scrollView;
     }
 

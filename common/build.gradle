@@ -43,6 +43,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ['autovaluegson.mutableAdaptersWithDefaultSetters': 'true']
+            }
+        }
     }
 
     buildTypes {
@@ -52,6 +57,12 @@ android {
         }
     }
 
+    resourcePrefix "srmc_"
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -61,6 +72,24 @@ dependencies {
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    // Dagger
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Butterknife
+    implementation "com.jakewharton:butterknife:$butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+
+    // AutoValue
+    implementation "com.ryanharter.auto.value:auto-value-gson-annotations:$auto_value_gson_version"
+    annotationProcessor "com.google.auto.value:auto-value:$auto_value_version"
+    annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$auto_value_gson_version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

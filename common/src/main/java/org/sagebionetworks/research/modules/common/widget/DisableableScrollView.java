@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.widget;
+package org.sagebionetworks.research.modules.common.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -42,20 +42,20 @@ import android.widget.ScrollView;
  * view stays at whatever position it was and user actions have no effect on it. Note: Disabling a scroll view only
  * disables user input from scrolling it, and it can still be moved in code.
  */
-public class DisablableScrollView extends ScrollView {
+public class DisableableScrollView extends ScrollView {
     private boolean enabled;
 
-    public DisablableScrollView(final Context context) {
+    public DisableableScrollView(final Context context) {
         super(context);
         this.commonInit();
     }
 
-    public DisablableScrollView(final Context context, final AttributeSet attrs) {
+    public DisableableScrollView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         this.commonInit();
     }
 
-    public DisablableScrollView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
+    public DisableableScrollView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.commonInit();
     }
@@ -65,7 +65,7 @@ public class DisablableScrollView extends ScrollView {
      *
      * @return `true` if scrolling is allowdd, `false` otherwise.
      */
-    public boolean isScollingEnabled() {
+    public boolean isScrollingEnabled() {
         return this.enabled;
     }
 

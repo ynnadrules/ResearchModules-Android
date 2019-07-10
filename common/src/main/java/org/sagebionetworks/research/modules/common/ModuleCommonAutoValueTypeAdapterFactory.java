@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,53 +30,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.step_view;
+package org.sagebionetworks.research.modules.common;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import com.google.gson.TypeAdapterFactory;
+import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
 
-import com.google.auto.value.AutoValue;
-
-import org.sagebionetworks.research.modules.motor_control.step.Icon;
-import org.sagebionetworks.research.presentation.DisplayDrawable;
-import org.sagebionetworks.research.presentation.DisplayString;
-import org.sagebionetworks.research.presentation.mapper.DrawableMapper;
-
-import java.io.Serializable;
-
-@AutoValue
-public abstract class IconView implements Serializable {
-    @AutoValue.Builder
-    public abstract static class Builder {
-        public abstract IconView build();
-
-        @Nullable
-        public abstract Builder setIcon(@Nullable DisplayDrawable icon);
-
-        @Nullable
-        public abstract Builder setTitle(@Nullable DisplayString title);
+/**
+ * Auto-generated TypeAdapterFactory for @AutoValue classes in the :mpower module. Due to how the auto-value-gson
+ * annotationProcessor works, a separate @GsonTypeAdapterFactory is needed for each gradle module.
+ */
+@GsonTypeAdapterFactory
+public abstract class ModuleCommonAutoValueTypeAdapterFactory implements TypeAdapterFactory {
+    //     Static factory method to access the package
+    //     private generated implementation
+    public static TypeAdapterFactory create() {
+        return new AutoValueGson_ModuleCommonAutoValueTypeAdapterFactory();
     }
-
-    public static Builder builder() {
-        return new AutoValue_IconView.Builder();
-    }
-
-    @NonNull
-    public static IconView fromIcon(@NonNull Icon icon, DrawableMapper mapper) {
-        String title = icon.getTitle();
-        DisplayDrawable iconDrawable = DisplayDrawable.create(null, mapper.getDrawableFromName(
-                icon.getIcon()));
-        if (title != null) {
-            return IconView.builder()
-                    .setIcon(iconDrawable)
-                    .setTitle(DisplayString.create(null, title))
-                    .build();
-        } else {
-            return null;
-        }
-    }
-
-    public abstract DisplayDrawable getIcon();
-
-    public abstract DisplayString getTitle();
 }

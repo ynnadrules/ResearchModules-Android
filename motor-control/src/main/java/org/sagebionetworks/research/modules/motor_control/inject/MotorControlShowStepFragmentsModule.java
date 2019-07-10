@@ -5,7 +5,7 @@ import org.sagebionetworks.research.modules.motor_control.show_step_fragment.Mtc
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.ShowCompletionStepFragment;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.ShowInstructionStepFragment;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.ShowMPowerActiveUIStepFragment;
-import org.sagebionetworks.research.modules.motor_control.show_step_fragment.ShowOverviewStepFragment;
+import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.ShowTappingCompletionStepFragment;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.hand_selection.ShowHandSelectionStepFragment;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.tapping.ShowTappingStepFragment;

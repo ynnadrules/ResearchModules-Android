@@ -49,11 +49,6 @@ public abstract class InstructionStepModule {
         return InstructionStepView::fromInstructionStep;
     }
 
-    @Provides
-    @IntoSet
-    static TypeAdapterFactory provideMotorControlAutoValueTypeAdapterFactory() {
-        return MotorControlAutoValueTypeAdapterFactory.create();
-    }
 
     @Provides
     @IntoMap

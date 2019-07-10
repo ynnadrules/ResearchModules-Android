@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ BSD 3-Clause License
   ~
-  ~ Copyright 2018  Sage Bionetworks. All rights reserved.
+  ~ Copyright 2019  Sage Bionetworks. All rights reserved.
   ~
   ~ Redistribution and use in source and binary forms, with or without modification,
   ~ are permitted provided that the following conditions are met:
@@ -36,7 +36,7 @@
     android:id="@id/rs2_step_fragment_root_view"
     android:layout_height="match_parent">
 
-    <org.sagebionetworks.research.modules.motor_control.widget.DisablableScrollView
+    <org.sagebionetworks.research.modules.common.widget.DisableableScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -102,7 +102,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/overallIconDescriptionLabel"/>
         </android.support.constraint.ConstraintLayout>
-    </org.sagebionetworks.research.modules.motor_control.widget.DisablableScrollView>
+    </org.sagebionetworks.research.modules.common.widget.DisableableScrollView>
     <org.sagebionetworks.research.mobile_ui.widget.ActionButton
             style="@style/Widget.ResearchStack.StepHeader.CancelButton"
             android:id="@id/rs2_step_navigation_action_cancel"

@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,18 +30,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.step_view;
+package org.sagebionetworks.research.modules.common.step.overview;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import org.sagebionetworks.research.domain.step.StepType;
 import org.sagebionetworks.research.domain.step.interfaces.Step;
-import org.sagebionetworks.research.modules.motor_control.step.Icon;
-import org.sagebionetworks.research.modules.motor_control.step.OverviewStep;
+import org.sagebionetworks.research.presentation.DisplayDrawable;
 import org.sagebionetworks.research.presentation.DisplayString;
 import org.sagebionetworks.research.presentation.mapper.DrawableMapper;
 import org.sagebionetworks.research.presentation.model.ColorThemeView;
@@ -50,6 +50,7 @@ import org.sagebionetworks.research.presentation.model.action.ActionView;
 import org.sagebionetworks.research.presentation.model.implementations.UIStepViewBase;
 import org.sagebionetworks.research.presentation.model.interfaces.UIStepView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class OverviewStepView extends UIStepViewBase {
         UIStepView uiStepView = UIStepViewBase.fromUIStep(step, mapper);
         OverviewStep overviewStep = (OverviewStep) step;
         List<IconView> iconViews = new ArrayList<>();
-        for (Icon icon : overviewStep.getIcons()) {
+        for (OverviewStep.Icon icon : overviewStep.getIcons()) {
             iconViews.add(IconView.fromIcon(icon, mapper));
         }
 
@@ -98,5 +99,42 @@ public class OverviewStepView extends UIStepViewBase {
     @NonNull
     public ImmutableList<IconView> getIconViews() {
         return this.iconViews;
+    }
+
+    @AutoValue
+    public abstract static class IconView implements Serializable {
+        @AutoValue.Builder
+        public abstract static class Builder {
+            public abstract IconView build();
+
+            @Nullable
+            public abstract Builder setIcon(@Nullable DisplayDrawable icon);
+
+            @Nullable
+            public abstract Builder setTitle(@Nullable DisplayString title);
+        }
+
+        public static Builder builder() {
+            return new AutoValue_OverviewStepView_IconView.Builder();
+        }
+
+        @NonNull
+        public static IconView fromIcon(@NonNull OverviewStep.Icon icon, DrawableMapper mapper) {
+            String title = icon.getTitle();
+            DisplayDrawable iconDrawable = DisplayDrawable.create(null, mapper.getDrawableFromName(
+                    icon.getIcon()));
+            if (title != null) {
+                return IconView.builder()
+                        .setIcon(iconDrawable)
+                        .setTitle(DisplayString.create(null, title))
+                        .build();
+            } else {
+                return null;
+            }
+        }
+
+        public abstract DisplayDrawable getIcon();
+
+        public abstract DisplayString getTitle();
     }
 }

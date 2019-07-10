@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,12 +30,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.step;
+package org.sagebionetworks.research.modules.common.step.overview;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration;
 import org.sagebionetworks.research.domain.step.StepType;
@@ -83,5 +86,35 @@ public class OverviewStep extends UIStepBase {
      */
     public ImmutableList<Icon> getIcons() {
         return this.icons;
+    }
+
+    /**
+     * Represents one of the icons that appears in the Overview steps. Icons have an image name ("icon") and a description
+     * of the image ("title")
+     */
+    @AutoValue
+    public abstract static class Icon {
+        @AutoValue.Builder
+        public abstract static class Builder {
+            public abstract Icon build();
+
+            public abstract Builder setIcon(@NonNull String icon);
+
+            public abstract Builder setTitle(@Nullable String title);
+        }
+
+        public static Builder builder() {
+            return new AutoValue_OverviewStep_Icon.Builder();
+        }
+
+        public static TypeAdapter<Icon> typeAdapter(Gson gson) {
+            return new AutoValue_OverviewStep_Icon.GsonTypeAdapter(gson);
+        }
+
+        @NonNull
+        public abstract String getIcon();
+
+        @Nullable
+        public abstract String getTitle();
     }
 }

@@ -48,7 +48,7 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 import org.sagebionetworks.research.domain.task.navigation.strategy.StepNavigationStrategy;
-import org.sagebionetworks.research.modules.motor_control.show_step_fragment.FirstRunHelper;
+import org.sagebionetworks.research.modules.common.util.FirstRunHelper;
 
 import java.util.Map;
 import java.util.Set;

@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -50,7 +50,7 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 import org.sagebionetworks.research.domain.task.navigation.strategy.StepNavigationStrategy;
-import org.sagebionetworks.research.modules.motor_control.show_step_fragment.FirstRunHelper;
+import org.sagebionetworks.research.modules.common.util.FirstRunHelper;
 
 import java.util.Map;
 import java.util.Set;

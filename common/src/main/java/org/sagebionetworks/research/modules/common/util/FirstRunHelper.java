@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.show_step_fragment;
+package org.sagebionetworks.research.modules.common.util;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,6 +38,7 @@ import android.support.annotation.Nullable;
 import org.sagebionetworks.research.domain.result.interfaces.AnswerResult;
 import org.sagebionetworks.research.domain.result.interfaces.Result;
 import org.sagebionetworks.research.domain.result.interfaces.TaskResult;
+import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZonedDateTime;
