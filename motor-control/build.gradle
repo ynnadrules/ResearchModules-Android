@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    api project(':common')
+
     implementation "org.sagebionetworks.research:data:$sage_research_version"
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
 
