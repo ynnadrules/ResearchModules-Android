@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "org.sagebionetworks.research.motorcontrol"
+        applicationId "org.sagebionetworks.research.modules.motor_control.test_app"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -40,7 +40,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':motor-control-module')
+    implementation project(':motor-control')
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
     implementation "org.sagebionetworks.research:domain:$sage_research_version"
     implementation "org.sagebionetworks.research:presentation:$sage_research_version"

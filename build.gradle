@@ -39,7 +39,7 @@ buildscript {
 
 allprojects {
     version = '0.0.1'
-    group = 'org.sagebionetworks.research'
+    group = 'org.sagebionetworks.research.modules'
 
     repositories {
         google()
