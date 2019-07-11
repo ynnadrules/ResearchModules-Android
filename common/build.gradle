@@ -90,6 +90,17 @@ dependencies {
     annotationProcessor "com.google.auto.value:auto-value:$auto_value_version"
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$auto_value_gson_version"
 
+    // used by OrdinalUtils class
+    implementation 'com.ibm.icu:icu4j:53.1'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:1.7.21'
+    implementation 'com.github.tony19:logback-android-core:1.1.1-6'
+    implementation 'com.github.tony19:logback-android-classic:1.1.1-6', {
+        exclude group: 'com.google.android', module: 'android'
+    }
+    testImplementation 'org.slf4j:slf4j-simple:1.7.21'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

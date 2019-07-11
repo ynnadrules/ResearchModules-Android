@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.google.common.collect.ImmutableMap;
 
 import org.sagebionetworks.research.domain.step.interfaces.Step;
+import org.sagebionetworks.research.modules.common.step.completion.CompletionStepView;
 import org.sagebionetworks.research.modules.motor_control.step.AppStepType;
 import org.sagebionetworks.research.modules.motor_control.step.TappingCompletionStep;
 import org.sagebionetworks.research.presentation.DisplayString;

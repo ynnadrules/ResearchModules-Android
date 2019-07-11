@@ -18,7 +18,7 @@ import org.sagebionetworks.research.domain.result.interfaces.TaskResult;
 import org.sagebionetworks.research.domain.step.interfaces.Step;
 import org.sagebionetworks.research.domain.task.Task;
 import org.sagebionetworks.research.domain.task.navigation.StepNavigator;
-import org.sagebionetworks.research.modules.motor_control.step.InstructionStep;
+import org.sagebionetworks.research.modules.common.step.instruction.InstructionStep;
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;

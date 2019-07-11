@@ -23,7 +23,7 @@ import org.sagebionetworks.research.modules.motor_control.show_step_fragment.han
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.hand_selection.ShowHandSelectionStepFragment;
 import org.sagebionetworks.research.modules.motor_control.step.HandStepHelper;
 import org.sagebionetworks.research.modules.motor_control.step.HandStepHelper.Hand;
-import org.sagebionetworks.research.modules.motor_control.step.InstructionStep;
+import org.sagebionetworks.research.modules.common.step.instruction.InstructionStep;
 import org.sagebionetworks.research.modules.motor_control.step.MPowerActiveUIStep;
 import org.threeten.bp.Instant;
 

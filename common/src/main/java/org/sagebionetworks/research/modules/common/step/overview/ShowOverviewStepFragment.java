@@ -84,7 +84,7 @@ public class ShowOverviewStepFragment extends
 
     @Override
     public int getLayoutId() {
-        return R.layout.srmc_overview_step;
+        return R.layout.srmc_fragment_show_overview_step;
     }
 
     @Override

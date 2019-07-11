@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control.step;
+package org.sagebionetworks.research.modules.common.step.instruction;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,7 +42,6 @@ import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration;
-import org.sagebionetworks.research.domain.result.interfaces.TaskResult;
 import org.sagebionetworks.research.domain.step.StepType;
 import org.sagebionetworks.research.domain.step.interfaces.ActiveUIStep;
 import org.sagebionetworks.research.domain.step.interfaces.Step;
@@ -50,14 +49,12 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 import org.sagebionetworks.research.domain.task.navigation.strategy.StepNavigationStrategy;
-import org.sagebionetworks.research.modules.common.util.FirstRunHelper;
 
 import java.util.Map;
 import java.util.Set;
 
 @AutoValue
-public abstract class InstructionStep implements ActiveUIStep, StepNavigationStrategy.SkipStepStrategy,
-    StepNavigationStrategy.NextStepStrategy {
+public abstract class InstructionStep implements ActiveUIStep {
     @AutoValue.Builder
     public abstract static class Builder {
         @NonNull
@@ -130,19 +127,6 @@ public abstract class InstructionStep implements ActiveUIStep, StepNavigationStr
                 .setDefaultCommands(ImmutableSet.of())
                 .setDefaultHiddenActions(ImmutableSet.of())
                 .setDefaultSpokenInstructions(ImmutableMap.of());
-    }
-
-    @Override
-    public String getNextStepIdentifier(@NonNull TaskResult taskResult) {
-        String nextStepIdentifier = HandStepNavigationRuleHelper.getNextStepIdentifier(this.getIdentifier(), taskResult);
-        return nextStepIdentifier;
-    }
-
-    @Override
-    public boolean shouldSkip(@NonNull TaskResult taskResult) {
-        boolean shouldSkip = HandStepNavigationRuleHelper.shouldSkip(this.getIdentifier(), taskResult) ||
-                (this.getIsFirstRunOnly() && !FirstRunHelper.isFirstRun(taskResult));
-        return shouldSkip;
     }
 
     @NonNull
