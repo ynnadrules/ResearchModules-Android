@@ -35,8 +35,6 @@ package org.sagebionetworks.research.modules.motor_control.inject;
 import com.google.gson.TypeAdapterFactory;
 import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
 
-import org.sagebionetworks.research.modules.motor_control.AutoValueGson_MotorControlAutoValueTypeAdapterFactory;
-
 /**
  * Auto-generated TypeAdapterFactory for @AutoValue classes in the :mpower module. Due to how the auto-value-gson
  * annotationProcessor works, a separate @GsonTypeAdapterFactory is needed for each gradle module.
