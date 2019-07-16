@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/completion_background_gradient" />
+        app:srcCompat="@drawable/srmc_completion_background_gradient" />
 
     <ImageView
         android:id="@+id/rs2_image_view"

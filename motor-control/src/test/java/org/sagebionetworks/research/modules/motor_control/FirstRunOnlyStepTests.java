@@ -18,7 +18,7 @@ import org.sagebionetworks.research.domain.result.interfaces.TaskResult;
 import org.sagebionetworks.research.domain.step.interfaces.Step;
 import org.sagebionetworks.research.domain.task.Task;
 import org.sagebionetworks.research.domain.task.navigation.StepNavigator;
-import org.sagebionetworks.research.modules.common.step.instruction.InstructionStep;
+import org.sagebionetworks.research.modules.motor_control.step.HandNavigationInstructionStep;
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;
@@ -50,13 +50,13 @@ public class FirstRunOnlyStepTests {
         when(this.task.getProgressMarkers()).thenReturn(ImmutableList.copyOf(progressMarkers));
         List<Step> steps = new ArrayList<>();
         steps.add(mockStepWithIdentifier("introduction"));
-        InstructionStep instructionFirstRunOnly = InstructionStep.builder()
+        HandNavigationInstructionStep instructionFirstRunOnly = HandNavigationInstructionStep.builder()
                 .setActions(ImmutableMap.of())
                 .setIdentifier("instructionStepFirstRunOnly")
                 .setIsFirstRunOnly(true)
                 .build();
         steps.add(instructionFirstRunOnly);
-        InstructionStep instructionNotFirstRunOnly = InstructionStep.builder()
+        HandNavigationInstructionStep instructionNotFirstRunOnly = HandNavigationInstructionStep.builder()
                 .setActions(ImmutableMap.of())
                 .setIdentifier("instructionStepNonFirstRunOnly")
                 .setIsFirstRunOnly(false)

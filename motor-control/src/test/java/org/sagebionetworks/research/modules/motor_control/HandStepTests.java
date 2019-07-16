@@ -21,9 +21,9 @@ import org.sagebionetworks.research.domain.task.navigation.StepNavigator;
 import org.sagebionetworks.research.modules.motor_control.result.HandSelectionResult;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.hand_selection.HandSelection;
 import org.sagebionetworks.research.modules.motor_control.show_step_fragment.hand_selection.ShowHandSelectionStepFragment;
+import org.sagebionetworks.research.modules.motor_control.step.HandNavigationInstructionStep;
 import org.sagebionetworks.research.modules.motor_control.step.HandStepHelper;
 import org.sagebionetworks.research.modules.motor_control.step.HandStepHelper.Hand;
-import org.sagebionetworks.research.modules.common.step.instruction.InstructionStep;
 import org.sagebionetworks.research.modules.motor_control.step.MPowerActiveUIStep;
 import org.threeten.bp.Instant;
 
@@ -58,15 +58,15 @@ public class HandStepTests {
        when(this.task.getProgressMarkers()).thenReturn(ImmutableList.copyOf(progressMarkers));
        List<Step> steps = new ArrayList<>();
         steps.add(StepTestHelper.mockStepWithIdentifier("introduction"));
-       InstructionStep instruction = InstructionStep.builder().setActions(ImmutableMap.of())
+        HandNavigationInstructionStep instruction = HandNavigationInstructionStep.builder().setActions(ImmutableMap.of())
                .setIdentifier("instruction").build();
        steps.add(instruction);
-       InstructionStep leftInstruction = InstructionStep.builder().setActions(ImmutableMap.of())
+        HandNavigationInstructionStep leftInstruction = HandNavigationInstructionStep.builder().setActions(ImmutableMap.of())
                .setIdentifier("left_instruction").build();
        MPowerActiveUIStep leftActive = MPowerActiveUIStep.builder().setActions(ImmutableMap.of())
                .setIdentifier("left_active").build();
        steps.add(mockSectionStep("left", leftInstruction, leftActive));
-       InstructionStep rightInstruction = InstructionStep.builder().setActions(ImmutableMap.of())
+        HandNavigationInstructionStep rightInstruction = HandNavigationInstructionStep.builder().setActions(ImmutableMap.of())
                .setIdentifier("right_instruction").build();
        MPowerActiveUIStep rightActive = MPowerActiveUIStep.builder().setActions(ImmutableMap.of())
                .setIdentifier("right_active").build();

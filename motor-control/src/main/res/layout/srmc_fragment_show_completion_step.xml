@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ BSD 3-Clause License
   ~
-  ~ Copyright 2018  Sage Bionetworks. All rights reserved.
+  ~ Copyright 2019  Sage Bionetworks. All rights reserved.
   ~
   ~ Redistribution and use in source and binary forms, with or without modification,
   ~ are permitted provided that the following conditions are met:
@@ -59,7 +59,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:srcCompat="@drawable/completion_tremor" />
 
     <include
         android:id="@+id/include"

@@ -64,7 +64,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:fadeScrollbars="true"
+                    app:srcCompat="@drawable/f_walking1" android:fadeScrollbars="true"
                     android:requiresFadingEdge="none"/>
 
             <include
@@ -92,6 +92,7 @@
 
             <include
                     android:id="@+id/iconView"
+                    layout="@layout/mpower2_icon_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="28dp"
