@@ -30,39 +30,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.psorcast.test_app
+package org.sagebionetworks.research.modules.psorcast.test_app;
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.body_plaque_coverage
-import org.sagebionetworks.research.domain.repository.TaskRepository
-import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
-import org.sagebionetworks.research.presentation.model.TaskView
-import java.util.UUID
-import javax.inject.Inject
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
-class MainActivity : DaggerAppCompatActivity() {
-    @Inject
-    lateinit var taskRepository: TaskRepository
+import org.sagebionetworks.research.modules.psorcast.test_app.inject.DaggerPsorcastDemoAppComponent;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+import dagger.android.AndroidInjector;
+import dagger.android.support.DaggerApplication;
 
-        body_plaque_coverage.setOnClickListener {
-            launchTask("PlaquesBodyMap", UUID.randomUUID())
-        }
+
+public class PsorcastDemoApplication extends DaggerApplication {
+    @Override
+    public void onCreate() {
+        AndroidThreeTen.init(this);
+        super.onCreate();
     }
 
-    private fun launchTask(taskIdentifier: String,
-            taskRunUUID: UUID?) {
-        val taskInfoView = taskRepository.getTaskInfo(taskIdentifier).blockingGet()
-
-        //TODO: mapper
-        val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
-
-        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
-        this.startActivity(intent)
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerPsorcastDemoAppComponent
+                .builder()
+                .application(this)
+                .build();
     }
 }

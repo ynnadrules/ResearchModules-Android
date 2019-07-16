@@ -30,39 +30,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.psorcast.test_app
+package org.sagebionetworks.research.modules.psorcast.test_app.inject;
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.body_plaque_coverage
-import org.sagebionetworks.research.domain.repository.TaskRepository
-import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
-import org.sagebionetworks.research.presentation.model.TaskView
-import java.util.UUID
-import javax.inject.Inject
+import android.app.Application;
 
-class MainActivity : DaggerAppCompatActivity() {
-    @Inject
-    lateinit var taskRepository: TaskRepository
+import org.sagebionetworks.research.data.inject.DataModule;
+import org.sagebionetworks.research.domain.inject.AsyncActionModule;
+import org.sagebionetworks.research.domain.inject.InputFieldsModule;
+import org.sagebionetworks.research.domain.inject.TaskModule;
+import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule;
+import org.sagebionetworks.research.modules.psorcast.inject.PsorcastStepModule;
+import org.sagebionetworks.research.modules.psorcast.test_app.PsorcastDemoApplication;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+import dagger.BindsInstance;
+import dagger.Component;
+import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
-        body_plaque_coverage.setOnClickListener {
-            launchTask("PlaquesBodyMap", UUID.randomUUID())
-        }
-    }
+@Component(modules = {PerformTaskModule.class, TaskModule.class, AndroidSupportInjectionModule.class,
+        InputFieldsModule.class, AsyncActionModule.class,
+        PsorcastStepModule.class, PsorcastDemoAppModule.class, DataModule.class})
+public interface PsorcastDemoAppComponent extends AndroidInjector<PsorcastDemoApplication> {
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
 
-    private fun launchTask(taskIdentifier: String,
-            taskRunUUID: UUID?) {
-        val taskInfoView = taskRepository.getTaskInfo(taskIdentifier).blockingGet()
-
-        //TODO: mapper
-        val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
-
-        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
-        this.startActivity(intent)
+        PsorcastDemoAppComponent build();
     }
 }

@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2019  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.motor_control;
+package org.sagebionetworks.research.modules.psorcast.inject;
 
 import com.google.gson.TypeAdapterFactory;
 import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
@@ -40,10 +40,11 @@ import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
  * annotationProcessor works, a separate @GsonTypeAdapterFactory is needed for each gradle module.
  */
 @GsonTypeAdapterFactory
-public abstract class MotorControlAutoValueTypeAdapterFactory implements TypeAdapterFactory {
+public abstract class PsorcastAutoValueTypeAdapterFactory implements TypeAdapterFactory {
     //     Static factory method to access the package
     //     private generated implementation
     public static TypeAdapterFactory create() {
-        return new AutoValueGson_MotorControlAutoValueTypeAdapterFactory();
+        return null;
+//        return new AutoValueGson_PsorcastAutoValueTypeAdapterFactory();
     }
 }

@@ -1,0 +1,17 @@
+{
+  "identifier": "PlaquesBodyMap",
+  "steps": [
+    {
+      "identifier": "introduction",
+      "type": "overview",
+      "title": "Body plaque coverage",
+      "text": "Select all areas on your body that currently have plaques.",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Begin"
+        }
+      }
+    }
+  ]
+}

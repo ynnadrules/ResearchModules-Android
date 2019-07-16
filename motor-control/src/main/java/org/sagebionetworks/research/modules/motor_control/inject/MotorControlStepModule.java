@@ -4,7 +4,6 @@ import com.google.gson.TypeAdapterFactory;
 
 import org.sagebionetworks.research.modules.common.step.completion.CompletionStepModule;
 import org.sagebionetworks.research.modules.common.step.overview.OverviewStepModule;
-import org.sagebionetworks.research.modules.motor_control.MotorControlAutoValueTypeAdapterFactory;
 
 import dagger.Module;
 import dagger.Provides;

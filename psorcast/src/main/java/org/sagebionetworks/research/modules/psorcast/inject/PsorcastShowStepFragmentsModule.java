@@ -30,39 +30,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.psorcast.test_app
+package org.sagebionetworks.research.modules.psorcast.inject;
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.body_plaque_coverage
-import org.sagebionetworks.research.domain.repository.TaskRepository
-import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
-import org.sagebionetworks.research.presentation.model.TaskView
-import java.util.UUID
-import javax.inject.Inject
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope;
+import org.sagebionetworks.research.modules.common.step.completion.ShowCompletionStepFragment;
+import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
 
-class MainActivity : DaggerAppCompatActivity() {
-    @Inject
-    lateinit var taskRepository: TaskRepository
+import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+@Module
+public abstract class PsorcastShowStepFragmentsModule {
 
-        body_plaque_coverage.setOnClickListener {
-            launchTask("PlaquesBodyMap", UUID.randomUUID())
-        }
-    }
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowOverviewStepFragment contributeShowOverviewStepFragmentInjector();
 
-    private fun launchTask(taskIdentifier: String,
-            taskRunUUID: UUID?) {
-        val taskInfoView = taskRepository.getTaskInfo(taskIdentifier).blockingGet()
-
-        //TODO: mapper
-        val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
-
-        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
-        this.startActivity(intent)
-    }
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowCompletionStepFragment contributeShowCompletionStepFragmentInjector();
 }
