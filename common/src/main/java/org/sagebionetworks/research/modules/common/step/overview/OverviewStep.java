@@ -60,10 +60,10 @@ public class OverviewStep extends UIStepBase {
     public OverviewStep(@NonNull String identifier, @NonNull Set<AsyncActionConfiguration> asyncActions,
             @Nullable Map<String, Action> actions, @Nullable Set<String> hiddenActions, @Nullable String title,
             @Nullable String text, @Nullable String detail, @Nullable String footnote,
-            @Nullable ColorTheme colorTheme, @Nullable ImageTheme imageTheme, List<Icon> icons) {
+            @Nullable ColorTheme colorTheme, @Nullable ImageTheme imageTheme,List<Icon> icons) {
         super(identifier, asyncActions, actions, hiddenActions, title, text, detail, footnote, colorTheme,
                 imageTheme);
-        this.icons = ImmutableList.copyOf(icons);
+        this.icons = icons == null ? ImmutableList.of() : ImmutableList.copyOf(icons);
     }
 
     @Override
@@ -89,8 +89,8 @@ public class OverviewStep extends UIStepBase {
     }
 
     /**
-     * Represents one of the icons that appears in the Overview steps. Icons have an image name ("icon") and a description
-     * of the image ("title")
+     * Represents one of the icons that appears in the Overview steps. Icons have an image name ("icon") and a
+     * description of the image ("title")
      */
     @AutoValue
     public abstract static class Icon {

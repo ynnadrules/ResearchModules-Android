@@ -92,6 +92,7 @@
 
             <include
                     android:id="@+id/iconView"
+                    layout="@layout/srmc_icon_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="28dp"

@@ -70,7 +70,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/countdown_dial_background"
+        android:background="@drawable/srmc_countdown_dial_background"
         android:max="100"
         android:progress="60"
         android:progressDrawable="@drawable/countdown_dial"
