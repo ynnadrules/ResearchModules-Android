@@ -70,4 +70,10 @@ public class PlaqueBodyMapStepView extends UIStepViewBase {
             @Nullable final ImageThemeView imageTheme) {
         super(identifier, actions, title, text, detail, footnote, colorTheme, imageTheme);
     }
+
+    @NonNull
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

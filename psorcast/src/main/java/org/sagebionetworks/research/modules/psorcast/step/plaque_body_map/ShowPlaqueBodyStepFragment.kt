@@ -42,6 +42,8 @@ import android.view.ViewGroup
 
 import org.sagebionetworks.research.modules.psorcast.R
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class ShowPlaqueBodyStepFragment : Fragment() {
 
@@ -50,10 +52,14 @@ class ShowPlaqueBodyStepFragment : Fragment() {
         fun newInstance(@NonNull stepView: StepView) = ShowPlaqueBodyStepFragment()
     }
 
+    private var logger : Logger = LoggerFactory.getLogger(ShowPlaqueBodyStepFragment::class.java)
+
     private lateinit var viewModel: ShowPlaqueBodyStepViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
+        logger.debug("onCreateView called")
+
         return inflater.inflate(R.layout.srpm_show_plaque_body_step_fragment, container, false)
     }
 
