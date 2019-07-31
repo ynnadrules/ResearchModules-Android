@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "org.sagebionetworks.research.motorcontrol"
+        applicationId "org.sagebionetworks.research.modules.motor_control.test_app"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -40,13 +40,20 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':motor-control-module')
+    implementation project(':motor-control')
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
     implementation "org.sagebionetworks.research:domain:$sage_research_version"
     implementation "org.sagebionetworks.research:presentation:$sage_research_version"
     implementation "org.sagebionetworks.research:data:$sage_research_version"
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:support-v4:$support_library_version"
+    implementation "com.android.support:design:$support_library_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     // Logging
     implementation 'org.slf4j:slf4j-api:1.7.21'
@@ -72,17 +79,9 @@ dependencies {
     kapt "com.ryanharter.auto.value:auto-value-gson:$auto_value_gson_version"
     kapt "com.google.auto.value:auto-value-annotations:$auto_value_version" // include again for auto-value-gson
 
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:support-v4:$support_library_version"
-    implementation "com.android.support:design:$support_library_version"
-
-
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 }
 repositories {
     mavenCentral()
