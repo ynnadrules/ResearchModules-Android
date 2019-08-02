@@ -32,21 +32,24 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel;
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
 import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowStepViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
 
-class ShowPlaqueBodyStepViewModel(val performTaskViewModel: PerformTaskViewModel,
-        val plaqueBodyMapStepView: PlaqueBodyMapStepView) : ShowStepViewModel<PlaqueBodyMapStepView>() {
+class ShowPlaqueBodyMapStepViewModel(val performTaskViewModel: PerformTaskViewModel,
+        val plaqueBodyMapStepView: PlaqueBodyMapStepView) :
+        ShowUIStepViewModel<PlaqueBodyMapStepView>(performTaskViewModel, plaqueBodyMapStepView)
 
-    override fun getStepView(): LiveData<PlaqueBodyMapStepView> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class ShowPlaqueBodyStepViewModelFactory :
+        ShowStepViewModelFactory<ShowPlaqueBodyMapStepViewModel, PlaqueBodyMapStepView> {
+
+    override fun create(performTaskViewModel: PerformTaskViewModel,
+            stepView: PlaqueBodyMapStepView): ShowPlaqueBodyMapStepViewModel {
+        return ShowPlaqueBodyMapStepViewModel(performTaskViewModel, stepView)
     }
 
-    override fun handleAction(actionType: String?) {
-
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getViewModelClass(): Class<out ShowStepViewModel<*>> {
+        return ShowPlaqueBodyMapStepViewModel::class.java
     }
-    // TODO: Implement the ViewModel
 }
