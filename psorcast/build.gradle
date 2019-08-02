@@ -130,4 +130,6 @@ dependencies {
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    android.defaultConfig.vectorDrawables.useSupportLibrary = true
 }

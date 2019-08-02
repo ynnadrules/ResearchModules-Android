@@ -32,8 +32,21 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel;
+import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowStepViewModel
 
-class ShowPlaqueBodyStepViewModel : ViewModel() {
+class ShowPlaqueBodyStepViewModel(val performTaskViewModel: PerformTaskViewModel,
+        val plaqueBodyMapStepView: PlaqueBodyMapStepView) : ShowStepViewModel<PlaqueBodyMapStepView>() {
+
+    override fun getStepView(): LiveData<PlaqueBodyMapStepView> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun handleAction(actionType: String?) {
+
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
     // TODO: Implement the ViewModel
 }

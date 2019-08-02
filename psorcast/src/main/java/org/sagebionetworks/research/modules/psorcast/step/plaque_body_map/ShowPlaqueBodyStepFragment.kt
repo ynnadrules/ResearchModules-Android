@@ -39,13 +39,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.StepViewBinding
 
 import org.sagebionetworks.research.modules.psorcast.R
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class ShowPlaqueBodyStepFragment : Fragment() {
+class ShowPlaqueBodyStepFragment : ShowStepFragmentBase<PlaqueBodyMapStepView, ShowPlaqueBodyStepViewModel, StepViewBinding<PlaqueBodyMapStepView>>() {
 
     companion object {
         @JvmStatic
