@@ -43,15 +43,17 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.graphics.Canvas
+import android.support.v7.widget.AppCompatImageView
+import java.util.ArrayList
 
-class PlaqueCoverageView : ImageView {
+class PlaqueCoverageView : AppCompatImageView {
 
     private val TOUCH_TOLERANCE = 4f
     private var highlightPaint = Paint()
     private var mX = 0f
     private var mY = 0f
     private var drawings = ArrayList<Path>()
-    private var above_waist_front = ContextCompat.getDrawable(context, R.drawable.above_waist_front_blurred)
+    private var above_waist_front = ContextCompat.getDrawable(context, R.drawable.srpm_above_waist_front_blurred)
 
     constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
