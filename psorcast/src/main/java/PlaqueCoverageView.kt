@@ -51,7 +51,9 @@ class PlaqueCoverageView : ImageView {
     private var mX = 0f
     private var mY = 0f
     private var drawings = ArrayList<Path>()
-    private var above_waist_front = ContextCompat.getDrawable(context, R.drawable.above_waist_front_blurred)
+
+    // Default to front upper front view of the body
+//    private var image = ContextCompat.getDrawable(context, R.drawable.above_waist_front_blurred)
 
     constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
@@ -65,7 +67,7 @@ class PlaqueCoverageView : ImageView {
         highlightPaint.strokeCap = Paint.Cap.ROUND
         highlightPaint.strokeWidth = 30f
 
-        setImageDrawable(above_waist_front)
+//        setImageDrawable(image)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -111,5 +113,9 @@ class PlaqueCoverageView : ImageView {
         var path = drawings.removeAt(drawings.size - 1)
         path.lineTo(mX, mY)
         drawings.add(path)
+    }
+
+    fun getPaths() : ArrayList<Path> {
+        return ArrayList(drawings)
     }
 }

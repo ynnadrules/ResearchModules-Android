@@ -32,17 +32,61 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import android.util.Log
+import org.sagebionetworks.research.modules.psorcast.result.PlaqueDrawingResult
+import org.sagebionetworks.research.presentation.model.action.ActionType
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
 import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
 import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowStepViewModel
 import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
+import org.threeten.bp.ZonedDateTime
 
-class ShowPlaqueBodyMapStepViewModel(val performTaskViewModel: PerformTaskViewModel,
-        val plaqueBodyMapStepView: PlaqueBodyMapStepView) :
-        ShowUIStepViewModel<PlaqueBodyMapStepView>(performTaskViewModel, plaqueBodyMapStepView)
+
+
+class ShowPlaqueBodyMapStepViewModel(performTaskViewModel: PerformTaskViewModel,
+        plaqueBodyMapStepView: PlaqueBodyMapStepView) :
+        ShowUIStepViewModel<PlaqueBodyMapStepView>(performTaskViewModel, plaqueBodyMapStepView) {
+
+    val pdResultBuilder : PlaqueDrawingResult.Builder
+    var front : MutableLiveData<Boolean> = MutableLiveData()
+
+    init {
+        front.value = true
+
+        val zonedStart = ZonedDateTime.now()
+        pdResultBuilder = PlaqueDrawingResult.builder()
+                .setStartTime(zonedStart.toInstant())
+                .setIdentifier(stepView.identifier)
+    }
+
+    override fun handleAction(actionType: String) {
+        // if next clicked, addStepResult()
+        if (actionType == ActionType.FORWARD) {
+            this.performTaskViewModel.addStepResult(pdResultBuilder.build())
+        }
+        super.handleAction(actionType)
+    }
+
+    fun  isFront() : LiveData<Boolean> {
+        return this.front
+    }
+
+//    fun printPathResults() {
+//        var result = pdResultBuilder.build()
+//        for (frontPath in result.frontPaths) {
+//            Log.e("Front", frontPath.toString())
+//        }
+//        for (backPath in result.backPaths) {
+//            Log.e("Back", backPath.toString())
+//        }
+//    }
+}
 
 class ShowPlaqueBodyStepViewModelFactory :
         ShowStepViewModelFactory<ShowPlaqueBodyMapStepViewModel, PlaqueBodyMapStepView> {
+
 
     override fun create(performTaskViewModel: PerformTaskViewModel,
             stepView: PlaqueBodyMapStepView): ShowPlaqueBodyMapStepViewModel {
