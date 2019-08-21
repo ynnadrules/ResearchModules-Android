@@ -126,3 +126,5 @@ dependencies {
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
 }
+
+apply from: "../config/artifact-deploy.gradle"
