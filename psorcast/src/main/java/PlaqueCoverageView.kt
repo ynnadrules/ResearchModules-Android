@@ -41,12 +41,12 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
 import android.graphics.Canvas
 import android.widget.ImageView.ScaleType.CENTER_INSIDE
-import android.widget.ImageView.ScaleType.FIT_XY
+import android.support.v7.widget.AppCompatImageView
+import java.util.ArrayList
 
-class PlaqueCoverageView : ImageView {
+class PlaqueCoverageView : AppCompatImageView {
 
     private val TOUCH_TOLERANCE = 4f
     private var highlightPaint = Paint()

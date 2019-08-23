@@ -14,6 +14,13 @@ android:
 script:
   ./gradlew build
 
+deploy:
+  provider: script
+  script: ./gradlew bintrayUpload
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^stable-.*$
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

@@ -133,3 +133,5 @@ dependencies {
 
     android.defaultConfig.vectorDrawables.useSupportLibrary = true
 }
+
+apply from: "../config/artifact-deploy.gradle"
