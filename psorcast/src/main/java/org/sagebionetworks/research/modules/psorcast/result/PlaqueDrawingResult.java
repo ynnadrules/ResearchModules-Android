@@ -34,9 +34,7 @@ package org.sagebionetworks.research.modules.psorcast.result;
 
 import android.graphics.Bitmap;
 import android.graphics.Path;
-import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
