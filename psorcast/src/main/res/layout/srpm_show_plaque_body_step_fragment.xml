@@ -47,52 +47,32 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <org.sagebionetworks.research.modules.psorcast.PlaqueCoverageView
-        android:id="@+id/plaque_coverage_view_front"
+        android:id="@id/rs2_image_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/rs2_text"
-        app:layout_constraintBottom_toTopOf="@id/rs2_step_navigation_action_bar" />
+        app:layout_constraintBottom_toTopOf="@id/rs2_step_navigation_action_bar"/>
 
-    <org.sagebionetworks.research.modules.psorcast.PlaqueCoverageView
-        android:id="@+id/plaque_coverage_view_back"
-        android:layout_width="match_parent"
+    <org.sagebionetworks.research.mobile_ui.widget.NavigationActionBar
+        android:id="@id/rs2_step_navigation_action_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/rs2_text"
-        app:layout_constraintBottom_toTopOf="@id/rs2_step_navigation_action_bar" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:isSkipHidden="true"/>
 
-<org.sagebionetworks.research.mobile_ui.widget.NavigationActionBar
-    android:id="@id/rs2_step_navigation_action_bar"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:isSkipHidden="true"/>
-
-<org.sagebionetworks.research.mobile_ui.widget.ActionButton
-    android:id="@id/rs2_step_navigation_action_cancel"
-    style="@style/Widget.ResearchStack.StepHeader.CancelButton"
-    android:layout_width="32dp"
-    android:layout_height="0dp"
-    android:layout_marginLeft="@dimen/margin_medium"
-    android:layout_marginStart="@dimen/margin_medium"
-    android:layout_marginTop="@dimen/margin_medium"
-    android:background="@drawable/rs2_cancel_icon"
-    app:layout_constraintDimensionRatio="H,1:1"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-<org.sagebionetworks.research.mobile_ui.widget.ActionButton
-    android:id="@+id/toggle_button"
-    android:layout_width="64dp"
-    android:layout_height="0dp"
-    android:layout_marginRight="@dimen/margin_medium"
-    android:layout_marginStart="@dimen/margin_medium"
-    android:layout_marginTop="@dimen/margin_medium"
-    android:background="@drawable/toggle_image_button"
-    app:layout_constraintDimensionRatio="H,1:1"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/rs2_step_navigation_action_bar" />
+    <org.sagebionetworks.research.mobile_ui.widget.ActionButton
+        android:id="@id/rs2_step_navigation_action_cancel"
+        style="@style/Widget.ResearchStack.StepHeader.CancelButton"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/rs2_cancel_icon"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

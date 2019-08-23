@@ -32,9 +32,6 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.util.Log
 import org.sagebionetworks.research.modules.psorcast.result.PlaqueDrawingResult
 import org.sagebionetworks.research.presentation.model.action.ActionType
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
@@ -50,11 +47,8 @@ class ShowPlaqueBodyMapStepViewModel(performTaskViewModel: PerformTaskViewModel,
         ShowUIStepViewModel<PlaqueBodyMapStepView>(performTaskViewModel, plaqueBodyMapStepView) {
 
     val pdResultBuilder : PlaqueDrawingResult.Builder
-    var front : MutableLiveData<Boolean> = MutableLiveData()
 
     init {
-        front.value = true
-
         val zonedStart = ZonedDateTime.now()
         pdResultBuilder = PlaqueDrawingResult.builder()
                 .setStartTime(zonedStart.toInstant())
@@ -68,20 +62,6 @@ class ShowPlaqueBodyMapStepViewModel(performTaskViewModel: PerformTaskViewModel,
         }
         super.handleAction(actionType)
     }
-
-    fun  isFront() : LiveData<Boolean> {
-        return this.front
-    }
-
-//    fun printPathResults() {
-//        var result = pdResultBuilder.build()
-//        for (frontPath in result.frontPaths) {
-//            Log.e("Front", frontPath.toString())
-//        }
-//        for (backPath in result.backPaths) {
-//            Log.e("Back", backPath.toString())
-//        }
-//    }
 }
 
 class ShowPlaqueBodyStepViewModelFactory :

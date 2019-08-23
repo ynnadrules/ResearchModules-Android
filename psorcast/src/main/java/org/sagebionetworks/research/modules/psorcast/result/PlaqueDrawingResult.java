@@ -56,11 +56,8 @@ public abstract class PlaqueDrawingResult implements Result {
         public abstract Builder setStartTime(@NonNull Instant endTime);
         public abstract Builder setEndTime(@NonNull Instant endTime);
 
-        public abstract Builder setFrontPaths(@NonNull ArrayList<Path> drawings);
-        public abstract Builder setBackPaths(@NonNull ArrayList<Path> drawings);
-
-        public abstract Builder setFrontBitmap(@NonNull Bitmap frontBitmap);
-        public abstract Builder setBackBitmap(@NonNull Bitmap backBitmap);
+        public abstract Builder setPaths(@NonNull ArrayList<Path> drawings);
+        public abstract Builder setBitmap(@NonNull Bitmap frontBitmap);
     }
 
     public static Builder builder() {
@@ -74,14 +71,8 @@ public abstract class PlaqueDrawingResult implements Result {
     }
 
     @NonNull
-    public abstract ArrayList<Path> getFrontPaths();
+    public abstract ArrayList<Path> getPaths();
 
     @NonNull
-    public abstract ArrayList<Path> getBackPaths();
-
-    @NonNull
-    public abstract Bitmap getFrontBitmap();
-
-    @NonNull
-    public abstract Bitmap getBackBitmap();
+    public abstract Bitmap getBitmap();
 }

@@ -43,6 +43,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.graphics.Canvas
+import android.widget.ImageView.ScaleType.CENTER_INSIDE
+import android.widget.ImageView.ScaleType.FIT_XY
 
 class PlaqueCoverageView : ImageView {
 
@@ -51,9 +53,6 @@ class PlaqueCoverageView : ImageView {
     private var mX = 0f
     private var mY = 0f
     private var drawings = ArrayList<Path>()
-
-    // Default to front upper front view of the body
-//    private var image = ContextCompat.getDrawable(context, R.drawable.above_waist_front_blurred)
 
     constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
@@ -67,7 +66,7 @@ class PlaqueCoverageView : ImageView {
         highlightPaint.strokeCap = Paint.Cap.ROUND
         highlightPaint.strokeWidth = 30f
 
-//        setImageDrawable(image)
+        scaleType = CENTER_INSIDE
     }
 
     override fun onDraw(canvas: Canvas) {
