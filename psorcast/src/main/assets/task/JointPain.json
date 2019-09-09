@@ -1,0 +1,81 @@
+{
+  "identifier": "JointPain",
+  "steps": [
+    {
+      "identifier": "introduction",
+      "type": "overview",
+      "title": "Select joint pain",
+      "text": "Select your joints that are causing you pain and discomfort. You can touch the joints you have selected to undo the selection.",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Begin"
+        }
+      }
+    },
+    {
+      "identifier": "upperBody",
+      "type": "jointPain",
+      "text": "Select your joint pain",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_upper_body_front_no_blur",
+        "placementType": "fullsizeBackground"
+      }
+    },
+    {
+      "identifier": "lowerBody",
+      "type": "jointPain",
+      "text": "Select your joint pain",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_lower_body_front_no_blur",
+        "placementType": "fullsizeBackground"
+      }
+    },
+    {
+      "identifier": "leftHand",
+      "type": "jointPain",
+      "text": "Select your joint pain",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_left_hand",
+        "placementType": "fullsizeBackground"
+      }
+    },
+    {
+      "identifier": "rightHand",
+      "type": "jointPain",
+      "text": "Select your joint pain",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_right_hand",
+        "placementType": "fullsizeBackground"
+      }
+    }
+  ]
+}

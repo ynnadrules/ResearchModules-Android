@@ -35,6 +35,7 @@ package org.sagebionetworks.research.modules.psorcast.inject;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope;
 import org.sagebionetworks.research.modules.common.step.completion.ShowCompletionStepFragment;
 import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
+import org.sagebionetworks.research.modules.psorcast.step.joint_pain.ShowJointPainStepFragment;
 import org.sagebionetworks.research.modules.psorcast.step.plaque_body_map.ShowPlaqueBodyStepFragment;
 
 import dagger.Module;
@@ -54,4 +55,8 @@ public abstract class PsorcastShowStepFragmentsModule {
     @ContributesAndroidInjector
     @ShowStepFragmentScope
     abstract ShowPlaqueBodyStepFragment contributeShowPlaqueBodyStepFragmentInjector();
+
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowJointPainStepFragment contributeShowJointPainStepFragmentInjector();
 }
