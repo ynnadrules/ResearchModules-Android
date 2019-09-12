@@ -16,7 +16,8 @@
     {
       "identifier": "upperBody",
       "type": "jointPain",
-      "text": "Select your joint pain",
+      "title": "ABOVE the waist joint pain",
+      "text": "Select all that apply",
       "actions": {
         "goForward": {
           "type": "base",
@@ -32,7 +33,8 @@
     {
       "identifier": "lowerBody",
       "type": "jointPain",
-      "text": "Select your joint pain",
+      "title": "BELOW the waist joint pain",
+      "text": "Select all that apply",
       "actions": {
         "goForward": {
           "type": "base",
@@ -48,7 +50,8 @@
     {
       "identifier": "leftHand",
       "type": "jointPain",
-      "text": "Select your joint pain",
+      "title": "LEFT hand joint pain",
+      "text": "Select all that apply",
       "actions": {
         "goForward": {
           "type": "base",
@@ -64,7 +67,8 @@
     {
       "identifier": "rightHand",
       "type": "jointPain",
-      "text": "Select your joint pain",
+      "title": "RIGHT hand joint pain",
+      "text": "Select all that apply",
       "actions": {
         "goForward": {
           "type": "base",
