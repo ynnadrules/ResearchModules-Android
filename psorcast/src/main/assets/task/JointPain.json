@@ -80,6 +80,40 @@
         "imageName": "srpm_right_hand",
         "placementType": "fullsizeBackground"
       }
+    },
+    {
+      "identifier": "leftFoot",
+      "type": "jointPain",
+      "title": "LEFT foot joint pain",
+      "text": "Select all that apply",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_left_foot",
+        "placementType": "fullsizeBackground"
+      }
+    },
+    {
+      "identifier": "rightFoot",
+      "type": "jointPain",
+      "title": "RIGHT foot joint pain",
+      "text": "Select all that apply",
+      "actions": {
+        "goForward": {
+          "type": "base",
+          "buttonTitle": "Next"
+        }
+      },
+      "image": {
+        "type": "fetchable",
+        "imageName": "srpm_right_foot",
+        "placementType": "fullsizeBackground"
+      }
     }
   ]
 }
