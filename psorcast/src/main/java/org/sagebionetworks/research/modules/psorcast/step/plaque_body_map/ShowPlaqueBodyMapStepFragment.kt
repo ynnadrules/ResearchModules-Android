@@ -32,8 +32,36 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
-import android.arch.lifecycle.ViewModel;
+import android.support.annotation.NonNull
+import android.view.View
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.StepViewBinding
+import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.UIStepViewBinding
+import org.sagebionetworks.research.modules.psorcast.R
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-class ShowPlaqueBodyStepViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ShowPlaqueBodyMapStepFragment :
+        ShowStepFragmentBase<PlaqueBodyMapStepView, ShowPlaqueBodyMapStepViewModel, StepViewBinding<PlaqueBodyMapStepView>>() {
+
+    companion object {
+        @JvmStatic
+        fun newInstance(@NonNull stepView: StepView): ShowPlaqueBodyMapStepFragment {
+            val fragment = ShowPlaqueBodyMapStepFragment()
+            val arguments = ShowStepFragmentBase.createArguments(stepView)
+            fragment.arguments = arguments
+            return fragment
+        }
+    }
+
+    private var logger: Logger = LoggerFactory.getLogger(ShowPlaqueBodyMapStepFragment::class.java)
+
+    override fun getLayoutId(): Int {
+        return R.layout.srpm_show_plaque_body_step_fragment
+    }
+
+    override fun instantiateAndBindBinding(view: View?): StepViewBinding<PlaqueBodyMapStepView> {
+        return UIStepViewBinding(view)
+    }
 }

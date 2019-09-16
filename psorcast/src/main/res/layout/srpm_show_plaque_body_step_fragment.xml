@@ -31,15 +31,38 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rs2_step_fragment_root_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".step.plaque_body_map.ShowPlaqueBodyStepFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <org.sagebionetworks.research.mobile_ui.widget.NavigationActionBar
+        android:id="@id/rs2_step_navigation_action_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:isSkipHidden="true"/>
+
+    <org.sagebionetworks.research.modules.psorcast.PlaqueCoverageView
+        android:id="@+id/body_map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/rs2_step_navigation_action_bar" />
 
-</FrameLayout>
+    <org.sagebionetworks.research.mobile_ui.widget.ActionButton
+        android:id="@id/rs2_step_navigation_action_cancel"
+        style="@style/Widget.ResearchStack.StepHeader.CancelButton"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/rs2_cancel_icon"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -17,10 +17,11 @@
       "identifier": "frontPlaqueBodyMap",
       "type": "plaqueBodyMap",
       "title": "Front of the body",
+      "text": "Draw areas that have plaques",
       "actions": {
         "goForward": {
           "type": "base",
-          "buttonTitle": "Proceed to Backside"
+          "buttonTitle": "Test!"
         }
       }
     }

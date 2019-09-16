@@ -31,9 +31,7 @@
  */
 
 package org.sagebionetworks.research.modules.psorcast.test_app
-
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.body_plaque_coverage
 import kotlinx.android.synthetic.main.activity_main.joint_pain

@@ -32,40 +32,24 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.plaque_body_map
 
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
-import android.support.annotation.NonNull
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
+import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowStepViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
 
-import org.sagebionetworks.research.modules.psorcast.R
-import org.sagebionetworks.research.presentation.model.interfaces.StepView
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+class ShowPlaqueBodyMapStepViewModel(val performTaskViewModel: PerformTaskViewModel,
+        val plaqueBodyMapStepView: PlaqueBodyMapStepView) :
+        ShowUIStepViewModel<PlaqueBodyMapStepView>(performTaskViewModel, plaqueBodyMapStepView)
 
-class ShowPlaqueBodyStepFragment : Fragment() {
+class ShowPlaqueBodyStepViewModelFactory :
+        ShowStepViewModelFactory<ShowPlaqueBodyMapStepViewModel, PlaqueBodyMapStepView> {
 
-    companion object {
-        @JvmStatic
-        fun newInstance(@NonNull stepView: StepView) = ShowPlaqueBodyStepFragment()
+    override fun create(performTaskViewModel: PerformTaskViewModel,
+            stepView: PlaqueBodyMapStepView): ShowPlaqueBodyMapStepViewModel {
+        return ShowPlaqueBodyMapStepViewModel(performTaskViewModel, stepView)
     }
 
-    private var logger : Logger = LoggerFactory.getLogger(ShowPlaqueBodyStepFragment::class.java)
-
-    private lateinit var viewModel: ShowPlaqueBodyStepViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?): View? {
-        logger.debug("onCreateView called")
-
-        return inflater.inflate(R.layout.srpm_show_plaque_body_step_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ShowPlaqueBodyStepViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun getViewModelClass(): Class<out ShowStepViewModel<*>> {
+        return ShowPlaqueBodyMapStepViewModel::class.java
     }
 }
