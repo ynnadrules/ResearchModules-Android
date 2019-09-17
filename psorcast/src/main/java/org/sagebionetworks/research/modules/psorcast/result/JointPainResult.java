@@ -30,30 +30,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.psorcast.step.joint_pain
+package org.sagebionetworks.research.modules.psorcast.result;
 
-import org.sagebionetworks.research.modules.psorcast.result.JointPainResult
-import org.sagebionetworks.research.presentation.model.action.ActionType
-import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
-import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
-import org.threeten.bp.ZonedDateTime
+import android.support.annotation.NonNull;
 
-class ShowJointPainStepViewModel(performTaskViewModel: PerformTaskViewModel,
-        jointPainStepView: JointPainStepView) : ShowUIStepViewModel<JointPainStepView>(performTaskViewModel, jointPainStepView) {
+import com.google.auto.value.AutoValue;
 
-    val jpResultBuilder : JointPainResult.Builder
+import org.sagebionetworks.research.domain.result.interfaces.Result;
+import org.threeten.bp.Instant;
 
-    init {
-        val zonedStart = ZonedDateTime.now()
-        jpResultBuilder = JointPainResult.builder()
-                .setStartTime(zonedStart.toInstant())
-                .setIdentifier(stepView.identifier)
+@AutoValue
+public abstract class JointPainResult implements Result {
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract JointPainResult build();
+        public abstract Builder setIdentifier(@NonNull String identifier);
+        public abstract Builder setStartTime(@NonNull Instant startTime);
+        public abstract Builder setEndTime(@NonNull Instant endTime);
     }
 
-    override fun handleAction(actionType: String?) {
-        if(actionType == ActionType.FORWARD) {
-            this.performTaskViewModel.addStepResult(jpResultBuilder.build())
-        }
-        super.handleAction(actionType)
+    public static final String TYPE_KEY = "jointPain";
+
+    public static Builder builder() {
+        return new AutoValue_JointPainResult.Builder();
     }
+
+    @Override
+    @NonNull
+    public String getType() {
+        return TYPE_KEY;
+    }
+
+    @Override
+    @NonNull
+    public abstract Instant getEndTime();
 }
