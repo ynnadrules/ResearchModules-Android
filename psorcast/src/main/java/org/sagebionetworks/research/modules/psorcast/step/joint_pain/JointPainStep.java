@@ -48,7 +48,10 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 
+import java.util.Map;
 import java.util.Set;
+
+import kotlin.Pair;
 
 @AutoValue
 public abstract class JointPainStep implements ThemedUIStep {
@@ -88,6 +91,9 @@ public abstract class JointPainStep implements ThemedUIStep {
 
         @NonNull
         public abstract Builder setImageTheme(@Nullable ImageTheme imageTheme);
+
+        @NonNull
+        public abstract Builder setJoints(@Nullable JointPlacement joints);
     }
 
     public static Builder builder() {
@@ -115,4 +121,7 @@ public abstract class JointPainStep implements ThemedUIStep {
     public Step copyWithIdentifier(@NonNull final String identifier) {
         return toBuilder().setIdentifier(identifier).build();
     }
+
+    @Nullable
+    public abstract JointPlacement getJoints();
 }

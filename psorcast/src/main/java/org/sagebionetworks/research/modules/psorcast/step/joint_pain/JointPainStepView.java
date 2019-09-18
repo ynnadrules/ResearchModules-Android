@@ -48,16 +48,19 @@ import org.sagebionetworks.research.presentation.model.implementations.UIStepVie
 public class JointPainStepView extends UIStepViewBase {
     public static final String TYPE = "jointPain";
 
+    private final JointPlacement joints;
+
     public static JointPainStepView fromJointPainStep(Step step, DrawableMapper mapper) {
         if (!(step instanceof JointPainStep)) {
             throw new IllegalArgumentException("Provided step: " + step + " is not a JointPainStep");
         }
 
+        JointPainStep jointPainStep = (JointPainStep) step;
         UIStepViewBase activeStep = UIStepViewBase.fromUIStep(step, mapper);
         return new JointPainStepView(activeStep.getIdentifier(),
                 activeStep.getActions(), activeStep.getTitle(), activeStep.getText(),
                 activeStep.getDetail(), activeStep.getFootnote(), activeStep.getColorTheme(),
-                activeStep.getImageTheme());
+                activeStep.getImageTheme(), jointPainStep.getJoints());
     }
 
     public JointPainStepView(@NonNull final String identifier,
@@ -67,13 +70,19 @@ public class JointPainStepView extends UIStepViewBase {
             @Nullable final DisplayString detail,
             @Nullable final DisplayString footnote,
             @Nullable final ColorThemeView colorTheme,
-            @Nullable final ImageThemeView imageTheme) {
+            @Nullable final ImageThemeView imageTheme,
+            final JointPlacement joints) {
         super(identifier, actions, title, text, detail, footnote, colorTheme, imageTheme);
+        this.joints = joints;
     }
 
     @NonNull
     @Override
     public String getType() {
         return TYPE;
+    }
+
+    public JointPlacement getJoints() {
+        return this.joints;
     }
 }
