@@ -32,6 +32,7 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_pain
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.annotation.NonNull
 import android.support.constraint.ConstraintLayout
@@ -47,6 +48,7 @@ import org.sagebionetworks.research.presentation.model.interfaces.StepView
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.ImageView
 import android.widget.ToggleButton
+import kotlinx.android.synthetic.main.srpm_show_joint_pain_step_fragment.rs2_text
 import org.sagebionetworks.research.modules.psorcast.R.drawable
 
 class ShowJointPainStepFragment : ShowUIStepFragmentBase<JointPainStepView, ShowJointPainStepViewModel, UIStepViewBinding<JointPainStepView>>() {
@@ -83,6 +85,19 @@ class ShowJointPainStepFragment : ShowUIStepFragmentBase<JointPainStepView, Show
                 })
             }
         }
+
+        // Listen for changes in the selected joints
+        this.showStepViewModel.jointCount.observe(this, Observer {
+            numJoints ->
+            if (numJoints == null || numJoints == 0) {
+                this.rs2_text.text = "Select all that apply"
+            } else if (numJoints == 1) {
+                this.rs2_text.text = "1 joint selected"
+            } else {
+                this.rs2_text.text = "" + numJoints + " joints selected"
+            }
+        })
+
         return v
     }
 
@@ -96,6 +111,7 @@ class ShowJointPainStepFragment : ShowUIStepFragmentBase<JointPainStepView, Show
 
             // Add a button for each joint for this view
             for (joint in joints.coordinates) {
+                val name = joint.key
                 val coords = joint.value
 
                 var buttonParams = LayoutParams(buttonSize.toInt(), buttonSize.toInt())
@@ -114,14 +130,21 @@ class ShowJointPainStepFragment : ShowUIStepFragmentBase<JointPainStepView, Show
 
                 // Define button for this joint
                 var button = ToggleButton(context)
-                button.tag = ""
+                button.tag = name
                 button.layoutParams = buttonParams
                 button.textOff = ""
                 button.textOn = ""
                 button.text = ""
                 button.setBackgroundResource(drawable.srpm_joint_pain_toggle_button)
 
+                // Add the button to the view
                 (view as ConstraintLayout).addView(button)
+
+                // Initialize value in view model and forward the button click to the view model.
+                this.showStepViewModel.selectedJoints[name] = button.isChecked
+                button.setOnClickListener {
+                    this.showStepViewModel.handleJointPress(name, button.isChecked)
+                }
             }
         }
     }

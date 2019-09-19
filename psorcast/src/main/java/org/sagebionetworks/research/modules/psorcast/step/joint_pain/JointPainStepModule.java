@@ -39,12 +39,16 @@ import com.google.gson.JsonDeserializer;
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey;
+import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule.StepViewClassKey;
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory;
 import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey;
 
 import dagger.Module;
 import dagger.Provides;
 import org.sagebionetworks.research.domain.inject.GsonModule.ClassKey;
+import org.sagebionetworks.research.presentation.model.interfaces.StepView;
+import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory;
+
 import dagger.multibindings.IntoMap;
 
 @Module
@@ -75,5 +79,12 @@ public class JointPainStepModule {
     @StepViewKey(JointPainStepView.TYPE)
     static ShowStepFragmentFactory provideShowJointPainStepFactory() {
         return ShowJointPainStepFragment::newInstance;
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewClassKey(JointPainStepView.TYPE)
+    static ShowStepViewModelFactory<?, ? extends StepView> provideJointPainStepVMF() {
+        return new ShowJointPainStepViewModelFactory();
     }
 }

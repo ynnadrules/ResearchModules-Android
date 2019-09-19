@@ -32,9 +32,12 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_pain
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import org.sagebionetworks.research.modules.psorcast.result.JointPainResult
 import org.sagebionetworks.research.presentation.model.action.ActionType
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
 import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
 import org.threeten.bp.ZonedDateTime
 
@@ -42,8 +45,13 @@ class ShowJointPainStepViewModel(performTaskViewModel: PerformTaskViewModel,
         jointPainStepView: JointPainStepView) : ShowUIStepViewModel<JointPainStepView>(performTaskViewModel, jointPainStepView) {
 
     val jpResultBuilder : JointPainResult.Builder
+    var selectedJoints : MutableMap<String,Boolean>
+    var jointCount : MutableLiveData<Int>
 
     init {
+        this.selectedJoints = HashMap()
+        this.jointCount = MutableLiveData()
+        this.jointCount.value = 0
         val zonedStart = ZonedDateTime.now()
         jpResultBuilder = JointPainResult.builder()
                 .setStartTime(zonedStart.toInstant())
@@ -52,8 +60,32 @@ class ShowJointPainStepViewModel(performTaskViewModel: PerformTaskViewModel,
 
     override fun handleAction(actionType: String?) {
         if(actionType == ActionType.FORWARD) {
+            jpResultBuilder.setSelectedJoints(selectedJoints)
+            jpResultBuilder.setJointCount(jointCount.value!!)
             this.performTaskViewModel.addStepResult(jpResultBuilder.build())
         }
         super.handleAction(actionType)
+    }
+
+    fun handleJointPress(jointName: String, isSelected: Boolean) {
+        if (isSelected) {
+            jointCount.value = jointCount.value?.plus(1)
+        } else {
+            jointCount.value = jointCount.value?.minus(1)
+        }
+        this.selectedJoints[jointName] = isSelected
+    }
+}
+
+class ShowJointPainStepViewModelFactory :
+        ShowStepViewModelFactory<ShowJointPainStepViewModel, JointPainStepView> {
+
+    override fun create(performTaskViewModel: PerformTaskViewModel,
+            stepView: JointPainStepView): ShowJointPainStepViewModel {
+        return ShowJointPainStepViewModel(performTaskViewModel, stepView)
+    }
+
+    override fun getViewModelClass(): Class<ShowJointPainStepViewModel> {
+        return ShowJointPainStepViewModel::class.java
     }
 }

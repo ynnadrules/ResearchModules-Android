@@ -39,6 +39,9 @@ import com.google.auto.value.AutoValue;
 import org.sagebionetworks.research.domain.result.interfaces.Result;
 import org.threeten.bp.Instant;
 
+import java.util.List;
+import java.util.Map;
+
 @AutoValue
 public abstract class JointPainResult implements Result {
     @AutoValue.Builder
@@ -47,6 +50,8 @@ public abstract class JointPainResult implements Result {
         public abstract Builder setIdentifier(@NonNull String identifier);
         public abstract Builder setStartTime(@NonNull Instant startTime);
         public abstract Builder setEndTime(@NonNull Instant endTime);
+        public abstract Builder setSelectedJoints(@NonNull Map<String,Boolean> selectedJoints);
+        public abstract Builder setJointCount(@NonNull int jointCount);
     }
 
     public static final String TYPE_KEY = "jointPain";
@@ -61,7 +66,9 @@ public abstract class JointPainResult implements Result {
         return TYPE_KEY;
     }
 
-    @Override
     @NonNull
-    public abstract Instant getEndTime();
+    public abstract Map<String,Boolean> getSelectedJoints();
+
+    @NonNull
+    public abstract int getJointCount();
 }
