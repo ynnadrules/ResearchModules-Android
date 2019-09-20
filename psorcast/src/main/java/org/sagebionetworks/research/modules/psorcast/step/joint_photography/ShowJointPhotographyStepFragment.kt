@@ -30,47 +30,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sagebionetworks.research.modules.psorcast.result;
+package org.sagebionetworks.research.modules.psorcast.step.joint_photography
 
-import android.graphics.Bitmap;
-import android.graphics.Path;
-import android.support.annotation.NonNull;
+import android.support.annotation.NonNull
+import android.view.View
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.UIStepViewBinding
+import org.sagebionetworks.research.modules.psorcast.R
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
-import com.google.auto.value.AutoValue;
+class ShowJointPhotographyStepFragment :
+        ShowUIStepFragmentBase<JointPhotographyStepView, ShowJointPhotographyStepViewModel, UIStepViewBinding<JointPhotographyStepView>>() {
 
-import org.sagebionetworks.research.domain.result.interfaces.Result;
-import org.threeten.bp.Instant;
-
-import java.util.ArrayList;
-
-
-@AutoValue
-public abstract class PlaqueDrawingResult implements Result {
-    @AutoValue.Builder
-    public abstract static class Builder {
-        public abstract PlaqueDrawingResult build();
-
-        public abstract Builder setIdentifier(@NonNull String identifier);
-        public abstract Builder setStartTime(@NonNull Instant startTime);
-        public abstract Builder setEndTime(@NonNull Instant endTime);
-
-        public abstract Builder setPaths(@NonNull ArrayList<Path> drawings);
-        public abstract Builder setBitmap(@NonNull Bitmap frontBitmap);
+    companion object {
+        @JvmStatic
+        fun newInstance(@NonNull stepView: StepView): ShowJointPhotographyStepFragment {
+            val fragment = ShowJointPhotographyStepFragment()
+            val arguments = ShowStepFragmentBase.createArguments(stepView)
+            fragment.arguments = arguments
+            return fragment
+        }
     }
 
-    public static Builder builder() {
-        return new AutoValue_PlaqueDrawingResult.Builder();
+    override fun getLayoutId(): Int {
+        return R.layout.srpm_show_joint_photography_step_fragment
     }
 
-    @Override
-    @NonNull
-    public String getType() {
-        return "plaqueDrawing";
+    override fun instantiateAndBindBinding(view: View?): UIStepViewBinding<JointPhotographyStepView> {
+        return UIStepViewBinding(view)
     }
-
-    @NonNull
-    public abstract ArrayList<Path> getPaths();
-
-    @NonNull
-    public abstract Bitmap getBitmap();
 }
