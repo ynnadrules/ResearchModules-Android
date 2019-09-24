@@ -32,7 +32,7 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_photography
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.view.View
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragmentBase
@@ -60,4 +60,6 @@ class ShowJointPhotographyStepFragment :
     override fun instantiateAndBindBinding(view: View?): UIStepViewBinding<JointPhotographyStepView> {
         return UIStepViewBinding(view)
     }
+
+
 }

@@ -33,4 +33,5 @@
 
 <resources>
     <color name="srpm_fern300">#6DB585</color>
+    <color name="srpm_dark_font">#2A2A2A</color>
 </resources>

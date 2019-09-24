@@ -14,9 +14,14 @@
       }
     },
     {
-      "identifier": "captureFoot",
+      "identifier": "leftToes",
       "type": "jointPhotography",
-      "text": "Take picture"
+      "title": "Left Toes"
+    },
+    {
+      "identifier": "rightToes",
+      "type": "jointPhotography",
+      "title": "Right Toes"
     }
   ]
 }
