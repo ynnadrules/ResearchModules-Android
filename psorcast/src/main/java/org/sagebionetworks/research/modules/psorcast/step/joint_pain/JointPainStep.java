@@ -32,8 +32,8 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_pain;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableMap;
@@ -48,10 +48,7 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 
-import java.util.Map;
 import java.util.Set;
-
-import kotlin.Pair;
 
 @AutoValue
 public abstract class JointPainStep implements ThemedUIStep {

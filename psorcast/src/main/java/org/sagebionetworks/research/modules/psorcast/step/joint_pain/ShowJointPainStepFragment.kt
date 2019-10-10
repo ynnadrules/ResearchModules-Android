@@ -32,11 +32,11 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_pain
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.annotation.NonNull
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintLayout.LayoutParams
+import androidx.annotation.NonNull
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

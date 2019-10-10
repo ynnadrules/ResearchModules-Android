@@ -32,8 +32,8 @@
 
 package org.sagebionetworks.research.modules.psorcast.step.joint_pain
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import org.sagebionetworks.research.modules.psorcast.result.JointPainResult
 import org.sagebionetworks.research.presentation.model.action.ActionType
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel

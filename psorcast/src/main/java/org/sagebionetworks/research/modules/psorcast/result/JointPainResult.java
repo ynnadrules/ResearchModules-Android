@@ -32,14 +32,13 @@
 
 package org.sagebionetworks.research.modules.psorcast.result;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
 
 import org.sagebionetworks.research.domain.result.interfaces.Result;
 import org.threeten.bp.Instant;
 
-import java.util.List;
 import java.util.Map;
 
 @AutoValue
