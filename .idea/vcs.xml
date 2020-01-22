@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/CJavaVM" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/java_swift" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-anycodable" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-java-coder" vcs="Git" />
   </component>
 </project>
