@@ -21,10 +21,10 @@
       },
       {
         "package": "MobileToolbox",
-        "repositoryURL": "ssh://git@stash.nubic.northwestern.edu:7999/mss/mobiletoolbox.git",
+        "repositoryURL": "/Users/neural/Work/kastelolabs/heliumfoot/clients/nu/mobiletoolbox",
         "state": {
           "branch": "feature/spm-integration",
-          "revision": "9a17af43d5693c1fd823c07a50452f0b3a5a1e23",
+          "revision": "466b4b60fe97fd33225fbf5b0ee5bb6105654132",
           "version": null
         }
       },

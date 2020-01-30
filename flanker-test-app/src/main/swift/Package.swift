@@ -62,15 +62,15 @@ let package = Package(
         // .package(url: "../../../../../../../../../swift-java-coder", .branch("swift5")),
         .package(url: "https://github.com/readdle/swift-java-coder", .upToNextMinor(from: "1.0.15")),
         .package(url: "https://github.com/readdle/swift-anycodable.git", .upToNextMinor(from: "1.0.3")),
-        .package(url: "ssh://git@stash.nubic.northwestern.edu:7999/mss/mobiletoolbox.git", .branch("feature/spm-integration")),
+        // .package(url: "ssh://git@stash.nubic.northwestern.edu:7999/mss/mobiletoolbox.git", .branch("feature/spm-integration")),
         // .package(url: "ssh://git@stash.nubic.northwestern.edu:7999/mss/mssenginekit.git", .branch("feature/spm-integration")),
 
-        // .package(url: "../../../../../mobiletoolbox/", .branch("feature/spm-integration")),
+        .package(url: "../../../../../mobiletoolbox/", .branch("feature/spm-integration")),
         // .package(url: "../../../../../mssenginekit/", .branch("feature/spm-integration")),
 
     ],
     targets: addGenerated([
-        .target(name: packageName, dependencies: ["java_swift", "Java", "JavaCoder", "AnyCodable", "FlankerKit", "MSSEngineKit"])
+        .target(name: packageName, dependencies: ["java_swift", "Java", "JavaCoder", "AnyCodable", "FlankerKit"])
     ]),
     swiftLanguageVersions: [.v5]
 )

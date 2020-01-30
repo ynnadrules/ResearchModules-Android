@@ -4,7 +4,7 @@
  */
 @SwiftModule(
         moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore"},
+        importPackages = {"FlankerKitCore", "FlankerKit"},
         customTypeMappings = {
                 // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
         })

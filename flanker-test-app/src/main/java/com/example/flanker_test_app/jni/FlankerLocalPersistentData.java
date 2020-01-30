@@ -30,39 +30,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.example.flanker_test_app.activity
+package com.example.flanker_test_app.jni;
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import com.example.flanker_test_app.App
-import com.example.flanker_test_app.R.layout
-import com.example.flanker_test_app.jni.FlankerKitCore
-import com.example.flanker_test_app.jni.FlankerLocalPersistentData
-import com.example.flanker_test_app.util.CertInstaller
-import com.readdle.codegen.anotation.JavaSwift
-import java.util.Date
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-class MainActivity : AppCompatActivity() {
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftValue;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(layout.activity_main)
+import java.util.Date;
 
-        val data = FlankerLocalPersistentData.init(Date(), "step-numero-uno")
-        Log.d(TAG, "FlankerLocalPersistentData last start date: ${data.lastStartDate ?: "<no date>"}")
-        Log.d(TAG, "FlankerLocalPersistentData last start date: ${data.stepIdentifier ?: "<no step identifier>"}")
-    }
+@SwiftValue
+public class FlankerLocalPersistentData {
 
-    companion object {
-        @JvmStatic
-        val TAG = MainActivity::class.java.name
+    @Nullable
+    public Date lastStartDate;
 
-        init {
-            System.loadLibrary("FlankerKitCore")
-            JavaSwift.init()
-            val cacheDir = CertInstaller.install(App.sharedApplication.applicationContext)
-            FlankerKitCore.bootstrap(cacheDir)
-        }
-    }
+    @Nullable
+    public String stepIdentifier;
+
+    @NonNull
+    @SwiftFunc("init(startDate:)")
+    public static native FlankerLocalPersistentData init(@Nullable Date startDate);
+
+    @NonNull
+    @SwiftFunc("init(startDate:stepIdentifier:)")
+    public static native FlankerLocalPersistentData init(@Nullable Date startDate, @Nullable String stepIdentifier);
+
+    private FlankerLocalPersistentData() {}
 }
