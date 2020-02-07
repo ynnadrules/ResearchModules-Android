@@ -30,17 +30,69 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
 package com.example.flanker_test_app.jni;
 
-import com.readdle.codegen.anotation.SwiftModule;
+import androidx.annotation.Nullable;
 
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftGetter;
+import com.readdle.codegen.anotation.SwiftSetter;
+import com.readdle.codegen.anotation.SwiftValue;
+
+import java.util.ArrayList;
+
+@SwiftValue
+public class FlankerStepBranchingRule {
+
+    @Nullable
+    private String description;
+
+    @Nullable
+    @SwiftGetter
+    public native String getDescription();
+
+    @Nullable
+    private String nextStepName;
+
+    @Nullable
+    @SwiftGetter
+    public native String getNextStepName();
+
+    @Nullable
+    private FlankerConditionType conditionType;
+
+    @Nullable
+    @SwiftGetter
+    public native FlankerConditionType getConditionType();
+
+    @Nullable
+    private ArrayList<FlankerBranchingCriteria> criterias;
+
+    @Nullable
+    @SwiftGetter
+    public native ArrayList<FlankerBranchingCriteria> getCriterias();
+
+    @SwiftSetter
+    public native void setCriterias(@Nullable ArrayList<FlankerBranchingCriteria> criterias);
+
+    @Nullable
+    private FlankerStepGroup stepGroup;
+
+    @Nullable
+    @SwiftGetter
+    public native FlankerStepGroup getStepGroup();
+
+    @SwiftSetter
+    public native void setStepGroup(@Nullable FlankerStepGroup stepGroup);
+
+    @SwiftFunc
+    public native static FlankerStepBranchingRule init(
+            @Nullable String description,
+            @Nullable String nextStepName,
+            @Nullable FlankerConditionType conditionType,
+            @Nullable ArrayList<FlankerBranchingCriteria> criterias,
+            @Nullable FlankerStepGroup stepGroup);
+
+
+    private FlankerStepBranchingRule() {}
+}

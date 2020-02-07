@@ -37,21 +37,42 @@ import android.os.Bundle
 import android.util.Log
 import com.example.flanker_test_app.App
 import com.example.flanker_test_app.R.layout
+import com.example.flanker.jni.FlankerKitCore
+import com.example.flanker.jni.FlankerLocalPersistentData
 import com.example.flanker_test_app.jni.FlankerKitCore
 import com.example.flanker_test_app.jni.FlankerLocalPersistentData
 import com.example.flanker_test_app.util.CertInstaller
 import com.readdle.codegen.anotation.JavaSwift
+import dagger.android.support.DaggerAppCompatActivity
+import org.sagebionetworks.research.domain.repository.TaskRepository
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
+import org.sagebionetworks.research.presentation.model.TaskView
 import java.util.Date
+import java.util.UUID
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var taskRepository: TaskRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
 
-        val data = FlankerLocalPersistentData.init(Date(), "step-numero-uno")
-        Log.d(TAG, "FlankerLocalPersistentData last start date: ${data.lastStartDate ?: "<no date>"}")
-        Log.d(TAG, "FlankerLocalPersistentData last start date: ${data.stepIdentifier ?: "<no step identifier>"}")
+        launchTask("Flanker", UUID.randomUUID())
+
+    }
+
+    private fun launchTask(taskIdentifier: String,
+            taskRunUUID: UUID?) {
+        val taskInfoView = taskRepository.getTaskInfo(taskIdentifier).blockingGet()
+
+        //TODO: mapper
+        val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
+
+        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
+        this.startActivity(intent)
     }
 
     companion object {

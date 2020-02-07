@@ -30,17 +30,67 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
 package com.example.flanker_test_app.jni;
 
-import com.readdle.codegen.anotation.SwiftModule;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.readdle.codegen.anotation.SwiftDelegate;
+import com.readdle.codegen.anotation.SwiftGetter;
+import com.readdle.codegen.anotation.SwiftSetter;
+
+@SwiftDelegate(protocols = {"FlankerStepResultProtocol"})
+public abstract class FlankerStepResultProtocol<ResponseType, ScoreType> {
+
+    @NonNull
+    public String identifier;
+
+    @NonNull
+    public Boolean practice;
+
+    @Nullable
+    public Double responseTime;
+
+    @Nullable
+    public ResponseType response;
+
+    @Nullable
+    @SwiftGetter
+    public native ResponseType getResponse();
+
+    @SwiftSetter
+    public native void setResponse(@Nullable ResponseType responseType);
+
+    @Nullable
+    public ScoreType score;
+
+    @Nullable
+    @SwiftGetter
+    public native ScoreType getScore();
+
+    @SwiftSetter
+    public native void setScore(@Nullable ScoreType scoreType);
+
+    @Nullable
+    public Integer anticipationError;
+
+    @Nullable
+    @SwiftGetter
+    public native Integer getAnticipationError();
+
+    @NonNull
+    public Boolean instruction;
+
+    @NonNull
+    @SwiftGetter
+    public native Boolean getInstruction();
+
+    private long nativePointer = 0L;
+    public native void init();
+    public native void release();
+
+    public FlankerStepResultProtocol() {
+        init();
+    }
+}

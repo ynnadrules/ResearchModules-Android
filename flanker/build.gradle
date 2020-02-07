@@ -30,17 +30,58 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
-package com.example.flanker_test_app.jni;
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
-import com.readdle.codegen.anotation.SwiftModule;
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ['autovaluegson.mutableAdaptersWithDefaultSetters': 'true']
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api project(':common')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.0.2'
+
+    // Swift Annotation dependencies
+//    implementation "com.readdle.swift.java.codegen:annotations:0.8.1"
+//    kapt "com.readdle.swift.java.codegen:compiler:0.8.1"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+repositories {
+    maven { url "https://dl.bintray.com/readdle/maven" }
+}

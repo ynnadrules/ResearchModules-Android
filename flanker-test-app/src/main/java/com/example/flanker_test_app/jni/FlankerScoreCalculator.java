@@ -30,17 +30,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
 package com.example.flanker_test_app.jni;
 
-import com.readdle.codegen.anotation.SwiftModule;
+import androidx.annotation.NonNull;
 
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftReference;
+
+import java.util.ArrayList;
+
+@SwiftReference
+public class FlankerScoreCalculator {
+
+    @NonNull
+    public static native FlankerScoreCalculator init(@NonNull ArrayList<FlankerStepResultProtocol> stepResults);
+
+    @NonNull
+    @SwiftFunc
+    public native FlankerScoreCalculation calculateScores(@NonNull Integer numberOfAdministeredSteps);
+
+    private long nativePointer = 0L;
+    private native void release();
+
+    private FlankerScoreCalculator() {}
+}

@@ -30,17 +30,66 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
 package com.example.flanker_test_app.jni;
 
-import com.readdle.codegen.anotation.SwiftModule;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.readdle.codegen.anotation.SwiftDelegate;
+import com.readdle.codegen.anotation.SwiftGetter;
+
+import java.util.ArrayList;
+
+@SwiftDelegate(protocols = {"FlankerStepResultProtocol"})
+public abstract class FlankerStepProtocol {
+
+    @NonNull
+    private String identifier;
+
+    @NonNull
+    public native String getIdentifier();
+
+    @Nullable
+    private String stepName;
+
+    @Nullable
+    @SwiftGetter
+    public native String getStepName();
+
+    @Nullable
+    private String nextStepIdentifier;
+
+    @Nullable
+    @SwiftGetter
+    public native String getNextStepIdentifier();
+
+    @Nullable
+    private ArrayList<FlankerStepBranchingRule> branchingNavigationRules;
+
+    @Nullable
+    @SwiftGetter
+    public native ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules();
+
+    @Nullable
+    private FlankerStepGroup stepGroup;
+
+    @Nullable
+    @SwiftGetter
+    public native FlankerStepGroup getStepGroup();
+
+    @Nullable
+    private String stepBackTo;
+
+    @Nullable
+    @SwiftGetter
+    public native String getStepBackTo();
+
+    private long nativePointer = 0L;
+    public native void init();
+    public native void release();
+
+    public FlankerStepProtocol() {
+        init();
+    }
+
+}

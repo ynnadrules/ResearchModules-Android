@@ -36,6 +36,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftGetter;
+import com.readdle.codegen.anotation.SwiftSetter;
 import com.readdle.codegen.anotation.SwiftValue;
 
 import java.util.Date;
@@ -44,10 +46,24 @@ import java.util.Date;
 public class FlankerLocalPersistentData {
 
     @Nullable
-    public Date lastStartDate;
+    private Date lastStartDate;
 
     @Nullable
-    public String stepIdentifier;
+    @SwiftGetter
+    public native Date getLastStartDate();
+
+    @SwiftSetter
+    public native void setLastStartDate(@Nullable Date lastStartDate);
+
+    @Nullable
+    private String stepIdentifier;
+
+    @Nullable
+    @SwiftGetter
+    public native String getStepIdentifier();
+
+    @SwiftSetter
+    public native void setStepIdentifier(@Nullable String stepIdentifier);
 
     @NonNull
     @SwiftFunc("init(startDate:)")
@@ -56,6 +72,15 @@ public class FlankerLocalPersistentData {
     @NonNull
     @SwiftFunc("init(startDate:stepIdentifier:)")
     public static native FlankerLocalPersistentData init(@Nullable Date startDate, @Nullable String stepIdentifier);
+
+//    public FlankerLocalPersistentData(@Nullable Date startDate) {
+//        this.lastStartDate = startDate;
+//    }
+//
+//    public FlankerLocalPersistentData(@Nullable Date startDate, @Nullable String stepIdentifier) {
+//        this.lastStartDate = startDate;
+//        this.stepIdentifier = stepIdentifier;
+//    }
 
     private FlankerLocalPersistentData() {}
 }

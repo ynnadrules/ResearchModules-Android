@@ -30,17 +30,49 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * This package contains SwiftModule annotations. Package level annotations are not available in Kotlin.
- * This is why JNI bridge classes are all implemented in java. 2018/11/19 - darryl
- */
-@SwiftModule(
-        moduleName = "FlankerKitCoreProject",
-        importPackages = {"FlankerKitCore", "FlankerKit"},
-        customTypeMappings = {
-                // @TypeMapping(swiftType = "Color", javaClass = AndroidColor.class)
-        })
 package com.example.flanker_test_app.jni;
 
-import com.readdle.codegen.anotation.SwiftModule;
+import androidx.annotation.Nullable;
 
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftGetter;
+import com.readdle.codegen.anotation.SwiftValue;
+
+@SwiftValue
+public class FlankerBranchingCriteria {
+    @Nullable
+    private String description;
+
+    @Nullable
+    @SwiftGetter
+    public native String getDescription();
+
+    @Nullable
+    private FlankerCriteriaName name;
+
+    @Nullable
+    @SwiftGetter
+    public native FlankerCriteriaName getName();
+
+    @Nullable
+    private FlankerCriteriaType type;
+
+    @Nullable
+    @SwiftGetter
+    public native FlankerCriteriaType getType();
+
+    @Nullable
+    private Integer duration;
+
+    @Nullable
+    public native Integer getDuration();
+
+    @SwiftFunc
+    public native static FlankerBranchingCriteria init(
+            @Nullable String description,
+            @Nullable FlankerCriteriaName name,
+            @Nullable FlankerCriteriaType type,
+            @Nullable Integer duration);
+
+    private FlankerBranchingCriteria() {}
+}
